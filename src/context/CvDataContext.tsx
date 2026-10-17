@@ -136,7 +136,9 @@ export const CvDataProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             ...(parsed.personal || {}),
             coreCompetencies: parsed.personal?.coreCompetencies || CV_DATA.personal.coreCompetencies,
             languages: parsed.personal?.languages || CV_DATA.personal.languages,
-            avatarUrl: parsed.personal?.avatarUrl || CV_DATA.personal.avatarUrl,
+            avatarUrl: (parsed.personal?.avatarUrl && !parsed.personal.avatarUrl.startsWith('/src/')) 
+              ? parsed.personal.avatarUrl 
+              : CV_DATA.personal.avatarUrl,
           },
           strategicProfile: { ...CV_DATA.strategicProfile, ...(parsed.strategicProfile || {}) },
           aiEnvironmentalSpecialty: { ...CV_DATA.aiEnvironmentalSpecialty, ...(parsed.aiEnvironmentalSpecialty || {}) },

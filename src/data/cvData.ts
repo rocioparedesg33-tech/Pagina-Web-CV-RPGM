@@ -1,4 +1,5 @@
 import { OfficialDocument, OFFICIAL_DOCUMENTS } from './documentsData';
+import rocioAvatarImg from '../assets/images/rocio_executive_avatar_1790208523556.jpg';
 
 export type { OfficialDocument, OfficialDocumentSignature } from './documentsData';
 
@@ -44,7 +45,7 @@ export const CV_DATA = {
     location: "Arequipa, Perú",
     phone: "918 191 721",
     email: "rocioparedesg41@gmail.com",
-    avatarUrl: "/src/assets/images/rocio_executive_avatar_1790208523556.jpg",
+    avatarUrl: rocioAvatarImg,
     availability: "Disponibilidad inmediata · Disposición para trabajo en campo / zonas remotas · Movilidad a nivel nacional",
     languages: [
       { name: "Español", level: "Nativo" },

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
 import { useCvData } from '../context/CvDataContext';
+import rocioExecutiveAvatar from '../assets/images/rocio_executive_avatar_1790208523556.jpg';
 import { Phone, Mail, MapPin, ShieldCheck, GraduationCap, Award, QrCode } from 'lucide-react';
 
 export const PrintCvDocument: React.FC = () => {
@@ -48,12 +49,19 @@ export const PrintCvDocument: React.FC = () => {
           <div className="flex flex-col items-center text-center -mx-5 -mt-5 pt-5 pb-4 px-4 bg-[#EBE5DB]/70 rounded-br-[36px] border-b border-[#DCD5C9]">
             <div className="w-28 h-28 rounded-full p-1 border-2 border-[#C5A25D] bg-white shadow-sm overflow-hidden mb-2">
               <img
-                src="/src/assets/images/rocio_executive_avatar_1790208523556.jpg"
+                src={
+                  personal.avatarUrl && !personal.avatarUrl.startsWith('/src/')
+                    ? personal.avatarUrl
+                    : rocioExecutiveAvatar
+                }
                 alt="Ing. Rocío Milagros Paredes Gamarra"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover object-top"
                 onError={(e) => {
-                  e.currentTarget.style.display = 'none';
+                  const target = e.currentTarget;
+                  if (target.src !== rocioExecutiveAvatar) {
+                    target.src = rocioExecutiveAvatar;
+                  }
                 }}
               />
             </div>

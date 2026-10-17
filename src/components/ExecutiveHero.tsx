@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCvData } from '../context/CvDataContext';
 import { EditableText } from './EditableText';
+import rocioExecutiveAvatar from '../assets/images/rocio_executive_avatar_1790208523556.jpg';
 import { 
   ShieldCheck, 
   MapPin, 
@@ -161,12 +162,21 @@ export const ExecutiveHero: React.FC<ExecutiveHeroProps> = ({
               <div className="relative group mb-3">
                 <div className="w-40 h-40 sm:w-44 sm:h-44 rounded-full p-1.5 border-2 border-[#C5A25D] bg-white shadow-md overflow-hidden relative">
                   <img
-                    src={personal.avatarUrl || "/src/assets/images/rocio_executive_avatar_1790208523556.jpg"}
+                    src={
+                      personal.avatarUrl && !personal.avatarUrl.startsWith('/src/')
+                        ? personal.avatarUrl
+                        : rocioExecutiveAvatar
+                    }
                     alt={personal.fullName}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105"
                     onError={(e) => {
-                      e.currentTarget.style.display = 'none';
+                      const target = e.currentTarget;
+                      if (target.src !== rocioExecutiveAvatar) {
+                        target.src = rocioExecutiveAvatar;
+                      } else if (!target.src.includes('rocio_executive_avatar_1790208523556.jpg')) {
+                        target.src = '/rocio_executive_avatar_1790208523556.jpg';
+                      }
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-br from-[#14213D] to-[#1E335C] flex flex-col items-center justify-center -z-10 p-4">
